@@ -1,38 +1,39 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonTitle, IonToggle, IonToolbar } from '@ionic/react';
-import { personCircleOutline, personCircleSharp, sunnyOutline, sunnySharp, moonSharp, moonOutline } from 'ionicons/icons';
-import React from 'react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToggle, IonToolbar, RefresherEventDetail } from '@ionic/react';
+import { personCircleOutline, personCircleSharp, sunnyOutline, sunnySharp, moonSharp, moonOutline, chevronDownCircleOutline } from 'ionicons/icons';
+import React, { useEffect } from 'react';
 import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import './DashboardPage.scss';
 import Grades from '../components/Grades';
+import Timetable from '../components/Timetable';
 const DashboardPage: React.FC = () => {
-  // const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-  // const [darkMode, setDarkMode] = React.useState(prefersDark.matches);
-  // const toggleDarkModeHandler = () => {
-  //   document.body.classList.toggle('dark', !darkMode);
-  //   setDarkMode(!darkMode)
-  // };
   const [darkMode, toggleDarkTheme] = useThemeSwitcher();
   function toggleDarkModeHandler() {
     toggleDarkTheme();
   }
+  function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.detail.complete();
+    }, 2000);
+  }
 
   return (
     <IonPage>
-      <IonHeader className='ion-no-border'>
+      <IonHeader className='ion-no-borde'>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonToggle
-          id='darkModeToggle'
+            id='darkModeToggle'
             checked={darkMode}
             onIonChange={toggleDarkModeHandler}
-            color="dark"
+            color="light"
             slot="end"
           />
           <IonButtons slot="end">
             <IonButton disabled={true}>
-            <IonIcon slot='icon-only' ios={darkMode ? moonOutline : sunnyOutline} md={darkMode ? moonSharp : sunnySharp} />
+              <IonIcon slot='icon-only' ios={darkMode ? moonOutline : sunnyOutline} md={darkMode ? moonSharp : sunnySharp} />
             </IonButton>
             <IonButton>
               <IonIcon slot="icon-only" md={personCircleSharp} ios={personCircleOutline}></IonIcon>
@@ -41,15 +42,19 @@ const DashboardPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen className="ion-padding-horizontal ion-padding-bottom">
-        <IonHeader collapse="condense" className='ion-no-border'>
-          <IonToolbar>
-            <IonTitle size="large">Dashboard</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <h1 id='greeting' className='text-center'>
+      <IonContent className="ion-padding">
+        <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+          <IonRefresherContent
+            pullingIcon={chevronDownCircleOutline}
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing..."
+          ></IonRefresherContent>
+        </IonRefresher>
+        <h1 id='greeting'>
           Hello Lance!
         </h1>
+        <Timetable darkMode={darkMode} />
         <Grades />
       </IonContent>
     </IonPage>

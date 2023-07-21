@@ -49,9 +49,9 @@ const Home: React.FC = () => {
         <SwiperSlide>
           <div className="internal-marks-header">BME</div>
           <div className="internal-marks-content">
-            <div className="internal-marks-numerator">25/50</div>
+            {/* <div className="internal-marks-numerator"></div>
             <IonIcon slot='icon-only' icon={removeOutline} />
-            <div className="internal-marks-denominator">50</div>
+            <div className="internal-marks-denominator">50</div> */}
           </div>
           <div className="internal-marks-footer">Internal Marks</div>
         </SwiperSlide>

@@ -23,10 +23,18 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.scss';
+import useThemeSwitcher from './hooks/useThemeSwitcher';
 
 setupIonicReact();
-
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+document.body.classList.toggle('dark', prefersDark.matches);
+// Listen for changes to the prefers-color-scheme media query
+prefersDark.addEventListener('change', (e) => {
+  console.log('changed!!');
+  document.body.classList.toggle('dark', prefersDark.matches);
+});
 const App: React.FC = () => {
+  
   return (
     <IonApp>
       <IonReactRouter>

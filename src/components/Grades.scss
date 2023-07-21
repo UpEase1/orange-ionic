@@ -23,14 +23,13 @@
   max-height: 175px;
   // background-color: var(--ion-color-tertiary);
   background-image: linear-gradient(to top right, #e7ebe5, #7c7c8f);
-  border-radius: 8px;
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 body.dark .square-box {
-  background-image: linear-gradient(to top right, #151522, #e7ebe5);
+  background-image: linear-gradient(to top right, #151522, #7c7c8f);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 /*
@@ -38,7 +37,7 @@ body.dark .square-box {
 */
 .square-box .gpa {
   position: absolute;
-  top: 12px;
+  top: 5px;
   left: 12px;
   font-size: 3rem;
   font-weight: bold;
@@ -137,3 +136,5 @@ body.dark .square-box {
     --swiper-navigation-sides-offset: 7px;
   }
 }
+
+

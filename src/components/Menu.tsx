@@ -14,7 +14,7 @@ import {
 
 import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, homeOutline, homeSharp,  personCircleOutline, personCircleSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
-import './Menu.css';
+import './Menu.scss';
 
 interface AppPage {
   url: string;

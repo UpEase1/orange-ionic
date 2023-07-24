@@ -1,3 +1,4 @@
+
 /*
   Common
 */
@@ -23,13 +24,14 @@
   max-height: 175px;
   // background-color: var(--ion-color-tertiary);
   background-image: linear-gradient(to top right, #e7ebe5, #7c7c8f);
+  border-radius: 8px;
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 body.dark .square-box {
-  background-image: linear-gradient(to top right, #151522, #7c7c8f);
+  background-image: linear-gradient(to top right, #151522, #e7ebe5);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 /*
@@ -37,7 +39,7 @@ body.dark .square-box {
 */
 .square-box .gpa {
   position: absolute;
-  top: 5px;
+  top: 12px;
   left: 12px;
   font-size: 3rem;
   font-weight: bold;
@@ -57,17 +59,16 @@ body.dark .square-box {
 */
 
 .square-box .internal-marks-header {
-  margin: 0;
-  
-  font-size: 0.6rem;
-  color: #000;
+  position: absolute;
+  top: 12px;
+  font-size: 1.2rem;
   font-weight: bold;
+  color: #000;
 }
 .square-box .internal-marks-footer {
   position: absolute;
   bottom: 12px;
-  left: 12px;
-  font-size: 0.6rem;
+  font-size: 1rem;
   color: #000;
   font-weight: bold;
 }
@@ -77,18 +78,18 @@ body.dark .square-box {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   color: #000;
 }
 
 .square-box .internal-marks-numerator {
   position: relative;
-  line-height: 0.8;
+  line-height: 0.6;
 }
 
 .square-box .internal-marks-denominator {
   position: relative;
-  line-height: 1.2;
+  line-height: 0.5;
 }
 
 /*
@@ -136,5 +137,3 @@ body.dark .square-box {
     --swiper-navigation-sides-offset: 7px;
   }
 }
-
-

@@ -47,33 +47,31 @@ const Home: React.FC = () => {
         className='square-box'
       >
         <SwiperSlide>
-          <div className="internal-marks-header">BME</div>
+          <div className="internal-marks-header">Internal Marks</div>
           <div className="internal-marks-content">
-            {/* <div className="internal-marks-numerator"></div>
+            <div className="internal-marks-numerator">25</div>
             <IonIcon slot='icon-only' icon={removeOutline} />
-            <div className="internal-marks-denominator">50</div> */}
-          </div>
-          <div className="internal-marks-footer">Internal Marks</div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-          <div className="internal-marks-header">Internal marks</div>
-          <div className="internal-marks-content">
-            <div className="internal-marks-numerator">25</div>
             <div className="internal-marks-denominator">50</div>
           </div>
           <div className="internal-marks-footer">BME</div>
-          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div>
-          <div className="internal-marks-header">Internal marks</div>
+          <div className="internal-marks-header">Internal Marks</div>
           <div className="internal-marks-content">
             <div className="internal-marks-numerator">25</div>
+            <IonIcon slot='icon-only' icon={removeOutline} />
             <div className="internal-marks-denominator">50</div>
           </div>
           <div className="internal-marks-footer">BME</div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="internal-marks-header">Internal Marks</div>
+          <div className="internal-marks-content">
+            <div className="internal-marks-numerator">25</div>
+            <IonIcon slot='icon-only' icon={removeOutline} />
+            <div className="internal-marks-denominator">50</div>
           </div>
+          <div className="internal-marks-footer">BME</div>
         </SwiperSlide>
       </Swiper>
     </div>

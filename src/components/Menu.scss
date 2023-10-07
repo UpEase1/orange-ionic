@@ -14,7 +14,7 @@ ion-menu.md ion-note {
   margin-bottom: 30px;
 }
 
-ion-menu.md ion-list-header, ion-menu.md ion-note {
+ ion-menu.md ion-note {
   padding-left: 10px;
 }
 
@@ -89,7 +89,7 @@ ion-menu.ios ion-list#labels-list ion-list-header {
   margin-bottom: 8px;
 }
 
-ion-menu.ios ion-list-header,
+
 ion-menu.ios ion-note {
   padding-left: 16px;
   padding-right: 16px;
@@ -108,3 +108,13 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-tertiary);
 } 
+
+.ms-login {
+  --login-signed-out-button-background: #73849a;
+  --login-signed-out-button-hover-background: #8598b2;
+  --login-button-padding:6px;
+}
+
+ion-list-header {
+  padding-left: 0px;
+}

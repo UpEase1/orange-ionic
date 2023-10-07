@@ -29,7 +29,6 @@ const Home: React.FC = () => {
           <div>
             <div className="gpa">8.0</div>
             <div className="sem">2nd sem</div>
-
           </div>
         </SwiperSlide>
         <SwiperSlide>

@@ -1,9 +1,10 @@
-import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
+import { IonApp, IonContent, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+// import Page from './pages/Page';
 import DashboardPage from './pages/DashboardPage';
+import config from '../graph.config';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -25,6 +26,11 @@ import '@ionic/react/css/display.css';
 import './theme/variables.scss';
 import useThemeSwitcher from './hooks/useThemeSwitcher';
 
+// Auth
+import { AuthProvider, initializeAuthentication, useAuth } from './context/authContext';
+import { useEffect, useState } from 'react';
+
+
 setupIonicReact();
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 document.body.classList.toggle('dark', prefersDark.matches);
@@ -33,26 +39,55 @@ prefersDark.addEventListener('change', (e) => {
   console.log('changed!!');
   document.body.classList.toggle('dark', prefersDark.matches);
 });
+
+const MyApp: React.FC = () => {
+  const { setToken, token } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+      // Modified initialization function to work with a callback
+      initializeAuthentication(config.appId, config.scopes, setToken)
+    .then(() => {
+        console.log('Authentication and token retrieval successful');
+        console.log(token);
+        setIsLoading(false);
+    })
+    .catch((error) => {
+        console.error('Error during authentication or token acquisition', error);
+    });
+
+  }, [setToken]);
+
+  if (isLoading) {
+      return <div>Loading...</div>; // or any loading indicator component
+  }
+
+  return (
+      <IonContent>
+          <IonReactRouter>
+              <IonSplitPane contentId="main">
+                  <Menu />
+                  <IonRouterOutlet id="main">
+                      <Route path="/" exact={true}>
+                          <Redirect to="/dashboard" />
+                      </Route>
+                      <Route path="/dashboard" exact={true}>
+                          <DashboardPage />
+                      </Route>
+                      {/* ... */}
+                  </IonRouterOutlet>
+              </IonSplitPane>
+          </IonReactRouter>
+      </IonContent>
+  );
+};
+
 const App: React.FC = () => {
-  
   return (
     <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/page/Dashboard" />
-            </Route>
-            <Route path="/page/Dashboard" exact={true}>
-              <DashboardPage />
-            </Route>
-            {/* <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route> */}
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
+      <AuthProvider>
+        <MyApp />
+      </AuthProvider>
     </IonApp>
   );
 };

@@ -11,10 +11,13 @@ import {
   IonMenuToggle,
   IonNote,
 } from '@ionic/react';
-
+import { Login as MsGraphLogin, applyTheme } from '@microsoft/mgt-react';
 import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, homeOutline, homeSharp,  personCircleOutline, personCircleSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.scss';
+import { use } from 'echarts';
+import useThemeSwitcher from '../hooks/useThemeSwitcher';
+import { useEffect } from 'react';
 
 interface AppPage {
   url: string;
@@ -26,51 +29,56 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: 'Dashboard',
-    url: '/page/Dashboard',
+    url: '/page/dashboard',
     iosIcon: homeOutline,
     mdIcon: homeSharp
   },
   {
     title: 'Attendance',
-    url: '/page/Attendance',
+    url: '/page/attendance',
     iosIcon: mailOutline,
     mdIcon: mailSharp
   },
   {
     title: 'Gradesheet',
-    url: '/page/Gradesheet',
+    url: '/page/gradesheet',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp
   },
   {
     title: 'Teachers',
-    url: '/page/Teachers',
+    url: '/page/teachers',
     iosIcon: heartOutline,
     mdIcon: heartSharp
   },
   {
     title: 'Internal Marks',
-    url: '/page/InternalMarks',
+    url: '/page/internalmarks',
     iosIcon: archiveOutline,
     mdIcon: archiveSharp
   },
   {
     title: 'Notifications',
-    url: '/page/Notifications',
+    url: '/page/notifications',
     iosIcon: trashOutline,
     mdIcon: trashSharp
   },
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const [darkMode, toggleDarkTheme] = useThemeSwitcher();
+  
 
+  useEffect(() => {
+    const ele = document.getElementById('login');
+    applyTheme(darkMode ? 'dark' : 'light', ele!);
+  },[darkMode]);
   return (
     <IonMenu contentId="main" type="reveal">
       <IonContent>
-        <IonItem lines="none">
+        {/* <IonItem lines="none">
           <IonAvatar slot="start">
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </IonAvatar>
@@ -78,13 +86,10 @@ const Menu: React.FC = () => {
             <h1>Lance</h1>
             <p>lance@upease.biz</p>
           </IonLabel>
-          {/* <IonLabel>
-                <h1>Lance</h1>
-                <IonNote>lance@upease.biz</IonNote>
-              </IonLabel> */}
-        </IonItem>
+        </IonItem> */}
         <IonList id="inbox-list">
-          <IonListHeader>
+          <IonListHeader lines='full'>
+            <MsGraphLogin className='ms-login' id='login' />
           </IonListHeader>
           {appPages.map((appPage, index) => {
             return (

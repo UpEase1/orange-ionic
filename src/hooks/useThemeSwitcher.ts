@@ -1,7 +1,10 @@
 import { toggle } from "ionicons/icons";
 import { useState } from "react";
-
-function useThemeSwitcher(): [boolean, () => void] {
+import { Providers, ProviderState } from '@microsoft/mgt-element';
+interface toggleDarkTheme {
+  (): void;
+}
+function useThemeSwitcher(): [boolean, toggleDarkTheme] {
   console.log('useThemeSwitcher called!');
   // check if body has dark class
   const prefersDark = document.body.classList.contains('dark');

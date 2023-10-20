@@ -5,6 +5,7 @@ import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import './DashboardPage.scss';
 import Grades from '../components/Grades';
 import Timetable from '../components/Timetable';
+import Calendar from '../components/Calendar';
 const DashboardPage: React.FC = () => {
   const [darkMode, toggleDarkTheme] = useThemeSwitcher();
   function toggleDarkModeHandler() {
@@ -56,6 +57,7 @@ const DashboardPage: React.FC = () => {
         </h1>
         <Timetable darkMode={darkMode} />
         <Grades />
+        <Calendar />
       </IonContent>
     </IonPage>
   );

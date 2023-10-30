@@ -44,7 +44,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className='ion-no-borde'>
+      <IonHeader className='ion-no-border'>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />

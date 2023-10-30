@@ -10,6 +10,7 @@ const config = {
     'Directory.Read.All',
     'api://aee2e4b1-6610-447a-805b-e3f28994bf67/UpeaseUnified.ReadWrite.All'
   ],
+  unifiedApiScope:'api://aee2e4b1-6610-447a-805b-e3f28994bf67/UpeaseUnified.ReadWrite.All'
 };
 
 export default config;

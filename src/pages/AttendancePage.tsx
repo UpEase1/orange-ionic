@@ -20,13 +20,13 @@ const AttendancePage: React.FC = () => {
       </IonHeader>
 
       <IonContent >
-        {/* <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
-          <CustomApiComponent />
-        </Get> */}
+        <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
+          <CustomApiComponent/>
+        </Get>
         {/* <Get resource="me?$select=displayName,id,userPrincipalName,faxNumber,jobTitle" cacheEnabled={true} >
 
         </Get> */}
-        <Temp />
+        {/* <Temp /> */}
         
       </IonContent>
     </IonPage>
@@ -45,7 +45,7 @@ const Temp: React.FC = (props) => {
           try {
               const provider = Providers.globalProvider;
               
-              const token = await provider.getAccessTokenForScopes(config.scopes[2]);
+              const token = await provider.getAccessTokenForScopes(config.unifiedApiScope);
               
               console.log(token);
               

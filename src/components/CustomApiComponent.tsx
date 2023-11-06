@@ -4,9 +4,9 @@ import config from '../../graph.config';
 import { MgtTemplateProps } from '@microsoft/mgt-react';
 import env from '../../env';
 
-interface data {
-  id: string
-}
+// interface data {
+//   id: string
+// }
 //! DEFINE A DATA TYPE FOR THE RESPONSE (e.g. interface AttendanceData)
 const AttendanceDataComponent: React.FC<MgtTemplateProps> = (props) => {
   const [data, setData] = useState<any | null>(null);
@@ -23,6 +23,7 @@ const AttendanceDataComponent: React.FC<MgtTemplateProps> = (props) => {
   console.log("COURSE IDS: " + courseIds);
 
   useEffect(() => {
+    //! Refector this whole thing using SWR
       const fetchData = async () => {
           try {
               // get token

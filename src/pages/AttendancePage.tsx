@@ -33,50 +33,50 @@ const AttendancePage: React.FC = () => {
   );
 };
 
-import React, { useState, useEffect } from 'react';
-import { Providers } from '@microsoft/mgt-element';
-import config from '../../graph.config';
-const Temp: React.FC = (props) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+// import React, { useState, useEffect } from 'react';
+// import { Providers } from '@microsoft/mgt-element';
+// import config from '../../graph.config';
+// const Temp: React.FC = (props) => {
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const provider = Providers.globalProvider;
+//   useEffect(() => {
+//       const fetchData = async () => {
+//           try {
+//               const provider = Providers.globalProvider;
               
-              const token = await provider.getAccessTokenForScopes(config.unifiedApiScope);
+//               const token = await provider.getAccessTokenForScopes(config.unifiedApiScope);
               
-              console.log(token);
+//               console.log(token);
               
-              const response = await fetch('http://localhost:8000/students/get/', {
-                  method: 'GET',
-                  headers: {
-                      'Authorization': 'Bearer ' + token
-                  }
-              });
+//               const response = await fetch('http://localhost:8000/students/get/', {
+//                   method: 'GET',
+//                   headers: {
+//                       'Authorization': 'Bearer ' + token
+//                   }
+//               });
 
-              if (response.ok) {
-                  const result = await response.json();
-                  console.log(result);
-              } else {
-                  setError('API call failed');
-              }
-          } catch (err: any) {
-              setError(err.message);
-          } finally {
-              setLoading(false);
-          }
-      };
+//               if (response.ok) {
+//                   const result = await response.json();
+//                   console.log(result);
+//               } else {
+//                   setError('API call failed');
+//               }
+//           } catch (err: any) {
+//               setError(err.message);
+//           } finally {
+//               setLoading(false);
+//           }
+//       };
 
-      fetchData();
-  }, []);
+//       fetchData();
+//   }, []);
 
-  return (
-      <div>
-          OPEN CONSOLE
-      </div>
-  );
-}
+//   return (
+//       <div>
+//           OPEN CONSOLE
+//       </div>
+//   );
+// }
 
 export default AttendancePage;

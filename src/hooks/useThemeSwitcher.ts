@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-interface toggleDarkTheme {
-  (): void;
-}
-function useThemeSwitcher(): [boolean, toggleDarkTheme] {
+
+type ToggleDarkTheme = () => void;
+function useThemeSwitcher(): [boolean, ToggleDarkTheme] {
   console.log('useThemeSwitcher called!');
   const prefersDark = document.body.classList.contains('dark');
   const [isDarkTheme, setDarkTheme] = useState(prefersDark);
@@ -24,24 +23,3 @@ function useThemeSwitcher(): [boolean, toggleDarkTheme] {
 }
 
 export default useThemeSwitcher;
-
-//! Old version of useThemeSwitcher
-// import { useState } from "react";
-
-// function useThemeSwitcher(): [boolean, () => void] {
-//   console.log('useThemeSwitcher called!');
-//   // check if body has dark class
-//   const prefersDark = document.body.classList.contains('dark');
-//   const [isDarkTheme, setDarkTheme] = useState(prefersDark);
-
-//   // document.body.classList.toggle('dark', isDarkTheme);
-//   function toggleDarkTheme() {
-//     console.log('toggleDarkTheme called!');
-//     setDarkTheme(!isDarkTheme);
-//     document.body.classList.toggle('dark', !isDarkTheme);
-//   };
-
-//   return [isDarkTheme, toggleDarkTheme];
-// }
-
-// export default useThemeSwitcher;

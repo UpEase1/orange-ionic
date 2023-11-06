@@ -3,7 +3,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import DashboardPage from './pages/DashboardPage';
-import AttendacePage from './pages/AttendancePage';
+import AttendancePage from './pages/AttendancePage';
 import config from '../graph.config';
 
 /* Core CSS required for Ionic components to work properly */
@@ -49,7 +49,7 @@ const App: React.FC = () => {
               <DashboardPage />
             </Route>
             <Route path="/attendance" exact={true}>
-              <AttendacePage />
+              <AttendancePage />
             </Route>
             {/* <Route path="/page/:name" exact={true}>
               <Page />

@@ -5,11 +5,36 @@ import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import './DashboardPage.scss';
 import Grades from '../components/Grades';
 import Timetable from '../components/Timetable';
+import { Get, MgtTemplateProps } from '@microsoft/mgt-react';
+import GraphConfig from '../../graph.config';
+
+const DisplayName: React.FC<MgtTemplateProps> = (props) => {
+  const data = props.dataContext;
+  console.log(data);
+
+  return (
+      <h1 id='greeting' slot="data">
+        <div className="welcome">Hello {data.displayName}, {data.faxNumber}!</div>
+      </h1>
+  )
+}
+// const FetchGroupData: React.FC<MgtTemplateProps> = (props) => {
+//   const groupData:[any] = props.dataContext.value;
+//   console.log(groupData);
+//   const courses = groupData.filter((group: any) => {
+//     if(group[`extension_${GraphConfig.courseDirectoryExtensionID}_Type`] === 'Course')
+//     return true;
+//     else return false;
+//   })
+//   console.log(courses);
+  
+//   return (
+//      <>
+//      </>
+//   )
+// }
 const DashboardPage: React.FC = () => {
   const [darkMode, toggleDarkTheme] = useThemeSwitcher();
-  function toggleDarkModeHandler() {
-    toggleDarkTheme();
-  }
   function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
     setTimeout(() => {
       // Any calls to load data go here
@@ -19,7 +44,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className='ion-no-borde'>
+      <IonHeader className='ion-no-border'>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
@@ -27,7 +52,7 @@ const DashboardPage: React.FC = () => {
           <IonToggle
             id='darkModeToggle'
             checked={darkMode}
-            onIonChange={toggleDarkModeHandler}
+            onIonChange={toggleDarkTheme}
             color="light"
             slot="end"
           />
@@ -51,9 +76,12 @@ const DashboardPage: React.FC = () => {
             refreshingText="Refreshing..."
           ></IonRefresherContent>
         </IonRefresher>
-        <h1 id='greeting'>
-          Hello Lance!
-        </h1>
+        <Get resource="me?$select=displayName,id,userPrincipalName,faxNumber,jobTitle" cacheEnabled={true} >
+          <DisplayName /> 
+        </Get>
+        {/* <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
+          <FetchGroupData />
+        </Get> */}
         <Timetable darkMode={darkMode} />
         <Grades />
       </IonContent>

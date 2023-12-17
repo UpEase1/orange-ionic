@@ -3,15 +3,22 @@ import { Providers } from '@microsoft/mgt-element';
 import config from '../../graph.config';
 import { MgtTemplateProps } from '@microsoft/mgt-react';
 import env from '../../env';
+import { UserDataType, useUser } from '../hooks/UserContext';
+import { Get } from '@microsoft/mgt-react';
+
 
 // interface data {
 //   id: string
 // }
 //! DEFINE A DATA TYPE FOR THE RESPONSE (e.g. interface AttendanceData)
-const AttendanceDataComponent: React.FC<MgtTemplateProps> = (props) => {
+type AttendanceDataComponentType = MgtTemplateProps & {
+  userData: UserDataType
+}
+const AttendanceDataComponent: React.FC<AttendanceDataComponentType> = (props) => {
   const [data, setData] = useState<any | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const {userData} = props
 
   // Extract the registration number and course IDs from the data context (prop)
   const groupData:any[] = props.dataContext.value;
@@ -24,45 +31,45 @@ const AttendanceDataComponent: React.FC<MgtTemplateProps> = (props) => {
 
   useEffect(() => {
     //! Refector this whole thing using SWR
-      const fetchData = async () => {
-          try {
-              // get token
-              const provider = Providers.globalProvider;
-              const token = await provider.getAccessTokenForScopes(config.unifiedApiScope);
-              
+    const fetchData = async () => {
+      try {
+          // get token
+          const provider = Providers.globalProvider;
+          const token = await provider.getAccessTokenForScopes(config.unifiedApiScope);
+          
 
-              // Construct the base URL
-              const registrationNumber = '210914049'; //!TEMP
-              const baseURL = `${env.API_URL}/${env.API_VERSION}students/get/${registrationNumber}/attendance`;
-              console.log("BASE_URL " + baseURL);
-              console.log("COURSE_IDS " + courseIds);
-              console.log("Token " + token);
-              
-              // Convert course IDs array to comma-separated string and append as query parameter
-              const queryString = new URLSearchParams({ course_ids: courseIds.join(',') }).toString();
-              const finalURL = `${baseURL}?${queryString}`;
-              console.log("FINAL_URL " + finalURL);
-              // Fetch data
-              const response = await fetch(finalURL, 
-                { 
-                  method: 'GET',
-                  headers: {
-                    'Authorization': `Bearer ${token}`
-                  }
-                });
-              
-              if (response.ok) {
-                  const result: any = await response.json();
-                  setData(result);
-              } else {
-                  setError('API call failed: ' + response.statusText);
+          // Construct the base URL
+          const registrationNumber = userData.faxNumber
+          const baseURL = `${env.API_URL}/${env.API_VERSION}students/${registrationNumber}/attendance`;
+          console.log("BASE_URL " + baseURL);
+          console.log("COURSE_IDS " + courseIds);
+          console.log("Token " + token);
+          
+          // Convert course IDs array to comma-separated string and append as query parameter
+          const queryString = new URLSearchParams({ course_ids: courseIds.join(',') }).toString();
+          const finalURL = `${baseURL}?${queryString}`;
+          console.log("FINAL_URL " + finalURL);
+          // Fetch data
+          const response = await fetch(finalURL, 
+            { 
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${token}`
               }
-          } catch (err: any) {
-              setError(err.message);
-          } finally {
-              setLoading(false);
+            });
+          
+          if (response.ok) {
+              const result: any = await response.json();
+              setData(result);
+          } else {
+              setError('API call failed: ' + response.statusText);
           }
-      };
+      } catch (err: any) {
+          setError(err.message);
+      } finally {
+          setLoading(false);
+      }
+  };
 
       fetchData();
   }, []);
@@ -79,6 +86,15 @@ const AttendanceDataComponent: React.FC<MgtTemplateProps> = (props) => {
       </div>
   );
 }
+const CustomApiComponent: React.FC = () =>{
+  const {userData, setUserData} = useUser()
+  return(
+    <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
+      <AttendanceDataComponent userData={userData} />
+    </Get>
+  )
+}
+export default CustomApiComponent;
 
-export default AttendanceDataComponent;
+
 

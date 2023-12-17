@@ -7,32 +7,16 @@ import Grades from '../components/Grades';
 import Timetable from '../components/Timetable';
 import { Get, MgtTemplateProps } from '@microsoft/mgt-react';
 import GraphConfig from '../../graph.config';
+import {UserDataType, useUser} from '../hooks/UserContext'
 
 const DisplayName: React.FC<MgtTemplateProps> = (props) => {
   const data = props.dataContext;
-  console.log(data);
-
   return (
       <h1 id='greeting' slot="data">
-        <div className="welcome">Hello {data.displayName}, {data.faxNumber}!</div>
+        <div className="welcome">Hello {data.displayName}!</div>
       </h1>
   )
 }
-// const FetchGroupData: React.FC<MgtTemplateProps> = (props) => {
-//   const groupData:[any] = props.dataContext.value;
-//   console.log(groupData);
-//   const courses = groupData.filter((group: any) => {
-//     if(group[`extension_${GraphConfig.courseDirectoryExtensionID}_Type`] === 'Course')
-//     return true;
-//     else return false;
-//   })
-//   console.log(courses);
-  
-//   return (
-//      <>
-//      </>
-//   )
-// }
 const DashboardPage: React.FC = () => {
   const [darkMode, toggleDarkTheme] = useThemeSwitcher();
   function handleRefresh(event: CustomEvent<RefresherEventDetail>) {

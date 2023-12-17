@@ -15,6 +15,7 @@ import { Login as MsGraphLogin, applyTheme } from '@microsoft/mgt-react';
 import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, homeOutline, homeSharp,  personCircleOutline, personCircleSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.scss';
+import { useUser } from '../hooks/UserContext';
 
 interface AppPage {
   url: string;
@@ -65,12 +66,17 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const {setUserData} = useUser();
   return (
     <IonMenu contentId="main" type="reveal">
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader lines='full'>
-            <MsGraphLogin className='ms-login' id='login' />
+            <MsGraphLogin className='ms-login' id='login'
+              logoutCompleted={(e) => {
+                setUserData({})
+              }}
+            />
           </IonListHeader>
           {appPages.map((appPage, index) => {
             return (

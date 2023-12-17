@@ -1,4 +1,4 @@
-import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
+import { IonApp, IonContent, IonLoading, IonPage, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
@@ -25,6 +25,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.scss';
 import useThemeSwitcher from './hooks/useThemeSwitcher';
+import LoginPage from './pages/LoginPage';
+import { UserDataType, useUser } from './hooks/UserContext';
+import { Providers } from '@microsoft/mgt-element';
+import { useEffect, useState } from 'react';
+import LoadingPage from './pages/LoadingPage';
 
 setupIonicReact();
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -35,30 +40,53 @@ prefersDark.addEventListener('change', (e) => {
   document.body.classList.toggle('dark', prefersDark.matches);
 });
 const App: React.FC = () => {
-  
+  const {userData,setUserData} = useUser()
+  const provider = Providers.globalProvider;
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    provider.graph.client.api('me').get()
+      .then(gotMe => {
+        setUserData(gotMe);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data', error);
+        setIsLoading(false);
+      });
+  }, []);
+  if(isLoading) return (
+    <IonApp>
+      <LoadingPage />
+    </IonApp>
+  )
   return (
     <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/dashboard" />
-            </Route>
-            <Route path="/dashboard" exact={true}>
-              <DashboardPage />
-            </Route>
-            <Route path="/attendance" exact={true}>
-              <AttendancePage />
-            </Route>
-            {/* <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route> */}
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
+        <IonReactRouter>
+          {userData.id ? (
+            <IonSplitPane contentId="main">
+              <Menu />
+              <IonRouterOutlet id="main">
+                <Redirect from="/" to="/dashboard" exact />
+                <Route path="/dashboard" component={DashboardPage} exact={true} />
+                <Route path="/attendance" component={AttendancePage} exact={true} />
+                {/* <Route path="/page/:name" exact={true}>
+                  <Page />
+                </Route> */}
+              </IonRouterOutlet>
+            </IonSplitPane>
+          ) : (
+            <>
+              <Redirect to="/" exact />
+              <Route path="/" component={LoginPage} exact />
+            </>
+          )}
+        </IonReactRouter>
     </IonApp>
   );
 };
 
 export default App;
+
+// Flow: On every reload, this component will set user data, uses loading screen

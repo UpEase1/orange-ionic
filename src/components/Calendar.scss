@@ -23,7 +23,7 @@ body.dark {
 
 .present-date{
     padding: 3%;
-    font-size: large;
+    font-size: 1.3rem;
 }
 
 .scheduler-block{
@@ -34,7 +34,7 @@ body.dark {
 .time-block{
     padding: 0 3%;
     width: 15%;
-    font-size: small;
+    font-size: 12px;
 }
 .event-block{
     width: 100%;
@@ -52,18 +52,17 @@ body.dark {
     width: 100%;
 }
 .lecture-type{
-    padding: 1% 0 0 5%;
+    padding: 5px 0 0 15px ;
 }
 .lecture-address{
-    padding-top: 1%;
-    padding-right: 5%;
+    padding: 5px 15px 0 0 ;
 }
 .event-block-lecture-name{
     padding-left: 5%;
-    font-size: large;
+    font-size: 18px;
     font-weight: 700;
 }
 .event-block-timings{
     padding-left: 5%;
-    font-size: small;
+    font-size: 12px;
 }

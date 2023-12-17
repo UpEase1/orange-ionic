@@ -11,9 +11,11 @@ import {
   IonMenuToggle,
   IonNote,
 } from '@ionic/react';
+import { Login as MsGraphLogin, applyTheme } from '@microsoft/mgt-react';
 import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, homeOutline, homeSharp,  personCircleOutline, personCircleSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.scss';
+import { useUser } from '../hooks/UserContext';
 
 interface AppPage {
   url: string;
@@ -25,66 +27,56 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: 'Dashboard',
-    url: '/page/dashboard',
+    url: '/dashboard',
     iosIcon: homeOutline,
     mdIcon: homeSharp
   },
   {
     title: 'Attendance',
-    url: '/page/attendance',
+    url: '/attendance',
     iosIcon: mailOutline,
     mdIcon: mailSharp
   },
   {
     title: 'Gradesheet',
-    url: '/page/gradesheet',
+    url: '/gradesheet',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp
   },
   {
     title: 'Teachers',
-    url: '/page/teachers',
+    url: '/teachers',
     iosIcon: heartOutline,
     mdIcon: heartSharp
   },
   {
     title: 'Internal Marks',
-    url: '/page/internalmarks',
+    url: '/internalmarks',
     iosIcon: archiveOutline,
     mdIcon: archiveSharp
   },
   {
     title: 'Notifications',
-    url: '/page/notifications',
+    url: '/notifications',
     iosIcon: trashOutline,
     mdIcon: trashSharp
   },
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
-
+  const {setUserData} = useUser();
   return (
     <IonMenu contentId="main" type="reveal">
       <IonContent>
-        {/* <IonItem lines="none">
-          <IonAvatar slot="start">
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </IonAvatar>
-          <IonLabel>
-            <h1>Lance</h1>
-            <p>lance@upease.biz</p>
-          </IonLabel>
-          <IonLabel>
-                <h1>Lance</h1>
-                <IonNote>lance@upease.biz</IonNote>
-              </IonLabel>
-        </IonItem> */}
         <IonList id="inbox-list">
           <IonListHeader lines='full'>
-            // MS Graph Login Component
+            <MsGraphLogin className='ms-login' id='login'
+              logoutCompleted={(e) => {
+                setUserData({})
+              }}
+            />
           </IonListHeader>
           {appPages.map((appPage, index) => {
             return (

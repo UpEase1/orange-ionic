@@ -6,11 +6,20 @@ import './DashboardPage.scss';
 import Grades from '../components/Grades';
 import Timetable from '../components/Timetable';
 import Calendar from '../components/Calendar';
+import { Get, MgtTemplateProps } from '@microsoft/mgt-react';
+import GraphConfig from '../../graph.config';
+import {UserDataType, useUser} from '../hooks/UserContext'
+
+const DisplayName: React.FC<MgtTemplateProps> = (props) => {
+  const data = props.dataContext;
+  return (
+      <h1 id='greeting' slot="data">
+        <div className="welcome">Hello {data.displayName}!</div>
+      </h1>
+  )
+}
 const DashboardPage: React.FC = () => {
   const [darkMode, toggleDarkTheme] = useThemeSwitcher();
-  function toggleDarkModeHandler() {
-    toggleDarkTheme();
-  }
   function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
     setTimeout(() => {
       // Any calls to load data go here
@@ -20,7 +29,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className='ion-no-borde'>
+      <IonHeader className='ion-no-border'>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
@@ -28,7 +37,7 @@ const DashboardPage: React.FC = () => {
           <IonToggle
             id='darkModeToggle'
             checked={darkMode}
-            onIonChange={toggleDarkModeHandler}
+            onIonChange={toggleDarkTheme}
             color="light"
             slot="end"
           />
@@ -52,9 +61,12 @@ const DashboardPage: React.FC = () => {
             refreshingText="Refreshing..."
           ></IonRefresherContent>
         </IonRefresher>
-        <h1 id='greeting'>
-          Hello Lance!
-        </h1>
+        <Get resource="me?$select=displayName,id,userPrincipalName,faxNumber,jobTitle" cacheEnabled={true} >
+          <DisplayName /> 
+        </Get>
+        {/* <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
+          <FetchGroupData />
+        </Get> */}
         <Timetable darkMode={darkMode} />
         <Grades />
         <Calendar />

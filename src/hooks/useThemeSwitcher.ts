@@ -1,17 +1,22 @@
-import { toggle } from "ionicons/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function useThemeSwitcher(): [boolean, () => void] {
+type ToggleDarkTheme = () => void;
+function useThemeSwitcher(): [boolean, ToggleDarkTheme] {
   console.log('useThemeSwitcher called!');
-  // check if body has dark class
   const prefersDark = document.body.classList.contains('dark');
   const [isDarkTheme, setDarkTheme] = useState(prefersDark);
 
-  // document.body.classList.toggle('dark', isDarkTheme);
+  useEffect(() => {
+    document.body.classList.toggle('dark', isDarkTheme);
+    return () => {
+      // Cleanup: Remove the 'dark' class when the component using the hook is unmounted
+      document.body.classList.remove('dark');
+    };
+  }, [isDarkTheme]);
+
   function toggleDarkTheme() {
     console.log('toggleDarkTheme called!');
-    setDarkTheme(!isDarkTheme);
-    document.body.classList.toggle('dark', !isDarkTheme);
+    setDarkTheme(prevIsDarkTheme => !prevIsDarkTheme);
   };
 
   return [isDarkTheme, toggleDarkTheme];

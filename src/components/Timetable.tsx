@@ -3,10 +3,8 @@ import ReactEChartsCore from 'echarts-for-react/lib/core';
 import { TitleComponent, TooltipComponent, GridComponent } from 'echarts/components';
 import { BarChart } from 'echarts/charts';
 import { SVGRenderer } from 'echarts/renderers';
-import { use } from 'echarts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Timetable.scss';
-import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import { IonSkeletonText } from '@ionic/react';
 
 echarts.use([TitleComponent , TooltipComponent, GridComponent, BarChart, SVGRenderer]);

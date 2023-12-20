@@ -8,7 +8,7 @@ type Calendarprops = {
         lecturetimings : string
     }
 
-const Schedulerblock = (props : Calendarprops) => {
+const SchedulerBlock = (props : Calendarprops) => {
         return (
             <div className="scheduler-block">
                 <div className="time-block">
@@ -34,6 +34,6 @@ const Schedulerblock = (props : Calendarprops) => {
         )
 }
 
-export default Schedulerblock;
+export default SchedulerBlock;
 
 

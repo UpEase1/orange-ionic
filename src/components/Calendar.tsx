@@ -1,7 +1,7 @@
 import React from "react";
 import { IonDatetime, IonDatetimeButton, IonModal } from '@ionic/react';
 import './Calendar.scss';
-import Schedulerblock from "./Schedulerblock";
+import SchedulerBlock from "./SchedulerBlock";
 import CalendarData from "./CalendarData";
 
 const Calendar: React.FC = () => {
@@ -17,12 +17,12 @@ const Calendar: React.FC = () => {
                 <p className="date-text">Today, {day} {month}</p>
             </div>
             {CalendarData.map(({ timeblock, lecturetype, lectureaddress, lecturename, lecturetimings }) => (
-     <Schedulerblock timeblock= {timeblock}
+     <SchedulerBlock timeblock= {timeblock}
                      lecturetype= {lecturetype}
                      lectureaddress= {lectureaddress}
                      lecturename=  {lecturename}
                     lecturetimings={lecturetimings}
-     ></Schedulerblock>
+     ></SchedulerBlock>
  ))}
         </div>
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import { IonDatetime, IonDatetimeButton, IonModal } from '@ionic/react';
 import './Calendar.scss';
-import Schedulerblock from "./schedulerblock";
+import Schedulerblock from "./Schedulerblock";
 import CalendarData from "./CalendarData";
 
 const Calendar: React.FC = () => {

@@ -9,7 +9,8 @@ import {
   BarController,
   Title,
   Tooltip,
-  
+  ChartOptions,
+  BarControllerChartOptions
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
@@ -21,56 +22,49 @@ ChartJS.register(
   annotationPlugin,
   Title,
   Tooltip,
-  
+
 );
 
 interface AttendanceProps {
-    darkMode: boolean
-  }
-  function Attendance({ darkMode }: AttendanceProps) {
-    const dataValues = [76, 79, 90, 63, 98, 77];
-    const backgroundColors = dataValues.map(value => (value < 75 ? '#FF8A00' : '#F8FBF5'));
-const options = {
+  darkMode: boolean
+}
+type BarChartOptions = ChartOptions<"bar"> & BarControllerChartOptions;
+function Attendance({ darkMode }: AttendanceProps) {
+  const dataValues = [76, 79, 90, 63, 98, 77];
+  const backgroundColors = dataValues.map(value => (value < 75 ? '#FF8A00' : '#F8FBF5'));
+  const options:BarChartOptions= {
     scales: {
-        x: {
-            grid: {
-                drawBorder: false,
-                display: false, // Remove gridlines on the x-axis
-            },
-            border:{
-                display:false
-              }
-            
-          },
-        y: {
-          beginAtZero: false,
-          min: 60,
-          max: 100,
-          ticks: {
-            // forces step size to be 50 units
-            stepSize: 10
-          },
-          grid: {
-            drawBorder: false,
-            display: false, // Remove gridlines on the x-axis
+      x: {
+        grid: {
+          // drawBorder: false,
+          display: false, // Remove gridlines on the x-axis
         },
-        border:{
-            display:false
-          }
-        },
-        
+        border: {
+          display: false
+        }
+
       },
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    elements: {
-        bar: {
-            topRight: 50,
-            bottomRight: 50,
-            bottomLeft: 50,
-            topLeft: 50,
+      y: {
+        beginAtZero: false,
+        min: 60,
+        max: 100,
+        ticks: {
+          // forces step size to be 50 units
+          stepSize: 10
         },
+        grid: {
+          // drawBorder: false,
+          display: false, // Remove gridlines on the x-axis
+        },
+        border: {
+          display: false
+        }
       },
+
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
       annotation: {
         annotations: {
           line1: {
@@ -83,39 +77,49 @@ const options = {
           }
         }
       },
-    
-    title: {
-      display: true,
-      text: 'Attendance',
-    },
-  },
-};
 
-
-
- const data = {
-    labels : [ 'CS-105','ICT-4456','MATH-5043','CS-105','ICT-4356','MATH-5443'],
-    datasets: [
-    {
-      data: dataValues,
-      backgroundColor: backgroundColors,
-      hoverBackgroundColor: backgroundColors,
-      borderWidth: 1,
-      borderRadius: {
-        topRight: 50,
-        bottomRight: 50,
-        bottomLeft: 50,
-        topLeft: 50,
+      title: {
+        display: true,
+        text: 'Attendance',
       },
-      barThickness: 20,
-
     },
-    
-  ],
-};
+    elements: {
+      bar: {
+        borderRadius: {
+          topRight: 50,
+          bottomRight: 50,
+          bottomLeft: 50,
+          topLeft: 50,
+        },
+      },
+    },
+  };
+
+
+
+  const data = {
+    labels: ['CS-105', 'ICT-4456', 'MATH-5043', 'CS-105', 'ICT-4356', 'MATH-5443'],
+    datasets: [
+      {
+        data: dataValues,
+        backgroundColor: backgroundColors,
+        hoverBackgroundColor: backgroundColors,
+        borderWidth: 1,
+        borderRadius: {
+          topRight: 50,
+          bottomRight: 50,
+          bottomLeft: 50,
+          topLeft: 50,
+        },
+        barThickness: 20,
+
+      },
+
+    ],
+  };
   return (
     <div className='attendance-component'>
-        <Bar options={options} data={data} />
+      <Bar options={options} data={data} />
     </div>
   );
 }

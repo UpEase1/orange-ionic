@@ -1,0 +1,13 @@
+.attendance-component{
+    border-radius: 15px;
+    background-image: linear-gradient(to top right, #151522, #7c7c8f);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 300px;
+}
+body.dark {
+    .timetable-component {
+      background-image: linear-gradient(to top right, #151522, #7c7c8f);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+  }

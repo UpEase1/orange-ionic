@@ -1,0 +1,69 @@
+.calendar-component{
+    border-radius: 15px;
+    background-image: linear-gradient(to top right, #e7ebe5, #7c7c8f);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    // height: 20%;
+    height: 300px;
+    overflow: auto;
+    
+}
+
+/*
+  Dark Mode
+*/
+body.dark {
+    .calendar-component {
+      background-image: linear-gradient(to top right, #151522, #7c7c8f);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+  }
+
+//   General
+
+.present-date{
+    padding: 3%;
+    font-size: 1.3rem;
+}
+
+.scheduler-block{
+    width: 100%;
+    display: flex;
+    margin-bottom: 2%;
+}
+.time-block{
+    padding: 0 3%;
+    width: 15%;
+    font-size: 12px;
+}
+.event-block{
+    width: 100%;
+    border-radius: 15px;
+    background-image: linear-gradient(to top right, #151522, #7c7c8f);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.event-block-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+    width: 100%;
+}
+.lecture-type{
+    padding: 5px 0 0 15px ;
+}
+.lecture-address{
+    padding: 5px 15px 0 0 ;
+}
+.event-block-lecture-name{
+    padding-left: 5%;
+    font-size: 18px;
+    font-weight: 700;
+}
+.event-block-timings{
+    padding-left: 5%;
+    font-size: 12px;
+}

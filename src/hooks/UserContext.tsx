@@ -4,8 +4,8 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 export type UserDataType = {
   displayName?: string;
   id?: string;
-  userPrincipalName?: string;
-  faxNumber?: string;
+  userPrincipalName?: string; // email
+  faxNumber?: string; // registration number
   jobTitle?: string;
 };
 

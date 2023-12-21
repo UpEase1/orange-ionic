@@ -72,8 +72,8 @@ const DashboardPage: React.FC = () => {
         {/* <Timetable darkMode={darkMode} /> */}
         <Attendance darkMode= {darkMode}></Attendance>
         <Grades />
-        <Noitications />
         <Calendar />
+        <Noitications />
       </IonContent>
     </IonPage>
   );

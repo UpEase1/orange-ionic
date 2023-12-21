@@ -6,9 +6,11 @@ import './DashboardPage.scss';
 import Grades from '../components/Grades';
 import Noitications from '../components/Notifications';
 import Timetable from '../components/Timetable';
+import Calendar from '../components/Calendar';
 import { Get, MgtTemplateProps } from '@microsoft/mgt-react';
 import GraphConfig from '../../graph.config';
 import {UserDataType, useUser} from '../hooks/UserContext'
+import Attendance from '../components/Attendance';
 
 const DisplayName: React.FC<MgtTemplateProps> = (props) => {
   const data = props.dataContext;
@@ -67,9 +69,11 @@ const DashboardPage: React.FC = () => {
         {/* <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
           <FetchGroupData />
         </Get> */}
-        <Timetable darkMode={darkMode} />
+        {/* <Timetable darkMode={darkMode} /> */}
+        <Attendance darkMode= {darkMode}></Attendance>
         <Grades />
         <Noitications />
+        <Calendar />
       </IonContent>
     </IonPage>
   );

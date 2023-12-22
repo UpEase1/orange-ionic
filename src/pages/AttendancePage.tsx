@@ -1,7 +1,6 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useParams } from 'react-router';
 import './Page.css';
-import CustomApiComponent from '../components/CustomApiComponent';
 import { Get } from '@microsoft/mgt-react';
 
 const AttendancePage: React.FC = () => {
@@ -20,14 +19,9 @@ const AttendancePage: React.FC = () => {
       </IonHeader>
 
       <IonContent >
-        <Get resource={`me/memberOf/microsoft.graph.group?$filter=groupTypes/any(c:c+eq+'Unified')`} cacheEnabled={true} >
-          <CustomApiComponent/>
-        </Get>  
-        {/* <Get resource="me?$select=displayName,id,userPrincipalName,faxNumber,jobTitle" cacheEnabled={true} >
-
-        </Get> */}
-        {/* <Temp /> */}
-        
+        <>
+          Under Construction...
+        </>
       </IonContent>
     </IonPage>
   );

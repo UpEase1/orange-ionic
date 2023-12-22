@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import './DashboardPage.scss';
 import Grades from '../components/Grades';
-import Timetable from '../components/Timetable';
 import Calendar from '../components/Calendar';
 import { Get, MgtTemplateProps } from '@microsoft/mgt-react';
 import GraphConfig from '../../graph.config';
@@ -69,7 +68,7 @@ const DashboardPage: React.FC = () => {
           <FetchGroupData />
         </Get> */}
         {/* <Timetable darkMode={darkMode} /> */}
-        <Attendance darkMode= {darkMode}></Attendance>
+        <Attendance />
         <Grades />
         <Calendar />
       </IonContent>

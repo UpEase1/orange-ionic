@@ -70,7 +70,7 @@ const DashboardPage: React.FC = () => {
           <FetchGroupData />
         </Get> */}
         {/* <Timetable darkMode={darkMode} /> */}
-        <Attendance darkMode= {darkMode}></Attendance>
+        <Attendance />
         <Grades />
         <Calendar />
         <Notifications />

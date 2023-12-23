@@ -15,7 +15,7 @@ function useThemeSwitcher(): [boolean, ToggleDarkTheme] {
   }, [isDarkTheme]);
 
   function toggleDarkTheme() {
-    console.log('toggleDarkTheme called!');
+    console.log('toggleDarkTheme called! changed theme to',isDarkTheme);
     setDarkTheme(prevIsDarkTheme => !prevIsDarkTheme);
   };
 

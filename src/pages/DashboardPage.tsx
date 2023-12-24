@@ -5,7 +5,6 @@ import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import './DashboardPage.scss';
 import Grades from '../components/Grades';
 import Notifications from '../components/Notifications';
-import Timetable from '../components/Timetable';
 import Calendar from '../components/Calendar';
 import { Get, MgtTemplateProps } from '@microsoft/mgt-react';
 import GraphConfig from '../../graph.config';

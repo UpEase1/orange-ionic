@@ -114,7 +114,17 @@ ion-item.selected {
   --login-signed-out-button-hover-background: #8598b2;
   --login-button-padding:6px;
 }
+//.ms-login.dark {
+//  --login-signed-out-button-background: #73849a;
+//  --login-signed-out-button-hover-background: #8598b2;
+//  --login-button-padding:6px;
+//}
 
 ion-list-header {
   padding-left: 0px;
+}
+
+.ms-login {
+  --person-line1-text-color: grey;
+  --login-popup-padding:0.55rem;
 }

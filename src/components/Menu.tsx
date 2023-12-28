@@ -11,11 +11,13 @@ import {
   IonMenuToggle,
   IonNote,
 } from '@ionic/react';
-import { Login as MsGraphLogin, applyTheme } from '@microsoft/mgt-react';
+import { useEffect } from 'react';
+import { Login as MsGraphLogin, applyTheme, ThemeToggle } from '@microsoft/mgt-react';
 import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, homeOutline, homeSharp,  personCircleOutline, personCircleSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.scss';
 import { useUser } from '../hooks/UserContext';
+import useThemeSwitcher from '../hooks/useThemeSwitcher';
 
 interface AppPage {
   url: string;
@@ -67,6 +69,17 @@ const appPages: AppPage[] = [
 const Menu: React.FC = () => {
   const location = useLocation();
   const {setUserData} = useUser();
+  const [isDarkTheme]= useThemeSwitcher();
+
+
+  useEffect(() => {
+    const loginWrapper = document.getElementById('login');
+    if(loginWrapper){
+      applyTheme(isDarkTheme ? "dark" : "light", loginWrapper);
+      console.log("run applytheme",isDarkTheme)
+    }
+  }, [isDarkTheme]);
+  
   return (
     <IonMenu contentId="main" type="reveal">
       <IonContent>

@@ -1,0 +1,78 @@
+.notifications-container {
+  background-image: linear-gradient(to top right, #e7ebe5, #7c7c8f);
+  border-radius: 10px;
+  height: 200px;
+  margin: 1rem 0 1rem 0;
+  overflow-y: scroll;
+  position: relative; /* Add position relative to create a stacking context */
+
+  .notifications-heading {
+    background: rgb(96, 97, 95);
+    background: linear-gradient(
+      175deg,
+      rgba(96, 97, 95, 1) 11%,
+      rgba(76, 77, 85, 1) 100%,
+      rgba(25, 24, 40, 1) 100%
+    );
+    margin: 0;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: sticky;
+    top: 0;
+  }
+
+  .notifications-list {
+    list-style-type: disc;
+    margin-left: 0;
+    padding-left: 1.5rem;
+    left: 0;
+
+    .notifications-item {
+      margin-bottom: 10px;
+      padding: 0.25rem;
+      border-radius: 5px;
+    }
+  }
+
+  /* Hide the scrollbar */
+  &::-webkit-scrollbar {
+    width: 0; /* Adjust to your desired width */
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+}
+
+body.dark .notifications-container {
+  background: #282836;
+  color: white;
+}
+
+body.dark .notifications-heading {
+  background: rgb(25, 24, 40);
+  background: linear-gradient(
+    175deg,
+    rgba(25, 24, 40, 1) 12%,
+    rgba(76, 77, 85, 1) 85%,
+    rgba(96, 97, 95, 1) 100%
+  );
+  color: white;
+
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: sticky;
+  top: 0;
+}

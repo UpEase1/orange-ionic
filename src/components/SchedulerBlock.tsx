@@ -16,12 +16,7 @@ const SchedulerBlock = (props : Calendarprops) => {
                 </div>
                 <div className="event-block">
                         <div className="event-block-top">
-                            <div className="lecture-type">
-                                {props.lecturetype}
-                            </div>
-                            <div className="lecture-address">
-                                {props.lectureaddress}
-                            </div>
+                        {props.lecturetype + ' ' + props.lectureaddress}
                         </div>
                         <div className="event-block-lecture-name">
                             {props.lecturename}

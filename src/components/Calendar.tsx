@@ -13,9 +13,7 @@ const Calendar: React.FC = () => {
 
     return (
         <div className="calendar-component">
-            <div className="present-date">
-                <p className="date-text">Today, {day} {month}</p>
-            </div>
+            <h3 className="present-date">Today, {day} {month}</h3>
             {CalendarData.map(({ timeblock, lecturetype, lectureaddress, lecturename, lecturetimings }) => (
      <SchedulerBlock timeblock= {timeblock}
                      lecturetype= {lecturetype}

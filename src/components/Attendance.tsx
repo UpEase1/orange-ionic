@@ -84,6 +84,9 @@ const AttendanceGraph: React.FC<AttendanceGraphType> = (props) => {
   const options: BarChartOptions = {
     scales: {
       x: {
+        ticks: {
+          color: '#ffffff'
+        },
         grid: {
           // drawBorder: false,
           display: false, // Remove gridlines on the x-axis
@@ -99,7 +102,13 @@ const AttendanceGraph: React.FC<AttendanceGraphType> = (props) => {
         max: 100,
         ticks: {
           // forces step size to be 50 units
-          stepSize: 10
+          stepSize: 10,
+          color: '#ffffff',
+          font: {
+            size: 14,
+            weight: 'bold'
+          },
+          callback: (tickValue: string | number) => `${tickValue}%`,
         },
         grid: {
           // drawBorder: false,
@@ -130,6 +139,11 @@ const AttendanceGraph: React.FC<AttendanceGraphType> = (props) => {
       title: {
         display: true,
         text: 'Attendance',
+        color: '#ffffff',
+        font: {
+          size: 20,
+          weight: 'bold'
+        }
       },
     },
     elements: {

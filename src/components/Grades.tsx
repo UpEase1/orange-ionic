@@ -58,7 +58,7 @@ const Home: React.FC = () => {
           <div className="internal-marks-header">Internal Marks</div>
           <div className="internal-marks-content">
             <div className="internal-marks-numerator">25</div>
-            <IonIcon slot='icon-only' icon={removeOutline} />
+            <IonIcon slot='icon-only' icon={removeOutline} className='internal-marks-icon'/>
             <div className="internal-marks-denominator">50</div>
           </div>
           <div className="internal-marks-footer">BME</div>
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
           <div className="internal-marks-header">Internal Marks</div>
           <div className="internal-marks-content">
             <div className="internal-marks-numerator">25</div>
-            <IonIcon slot='icon-only' icon={removeOutline} />
+            <IonIcon slot='icon-only' icon={removeOutline} className='internal-marks-icon'/>
             <div className="internal-marks-denominator">50</div>
           </div>
           <div className="internal-marks-footer">BME</div>

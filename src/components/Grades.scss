@@ -8,8 +8,10 @@
   align-items: center;
   width: 100%;
   height: 200px;
-  max-width: 500px;
-  margin: 25px 0 0px 0px;
+  // max-width: 500px;
+  margin: 1rem 0 1rem 0;
+  display: flex;
+  justify-content: space-around;
 }
 
 .mySwiper {
@@ -19,21 +21,24 @@
 
 .square-box {
   position: relative;
-  //max-width: 120px;
+  max-width: 170px;
   width: 100%;
   height: 100%;
-  //max-height: 125px;
-  // background-color: var(--ion-color-tertiary);
-  background-image: linear-gradient(to top right, #e7ebe5, #7c7c8f);
-  border-radius: 8px;
+  max-height: 175px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(10.1px);
   overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 body.dark .square-box {
-  background-image: linear-gradient(to top right, #151522, #e7ebe5);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 /*
   Box 1
@@ -44,7 +49,7 @@ body.dark .square-box {
   left: 12px;
   font-size: 3rem;
   font-weight: bold;
-  color: var(--ion-color-dark-shade);
+  color: #A4EFB0;
 }
 
 .square-box .sem {
@@ -52,7 +57,7 @@ body.dark .square-box {
   bottom: 12px;
   right: 12px;
   font-size: 1.4rem;
-  color: var(--ion-color-dark-shade);
+  color: #A4EFB0;
 }
 
 /*
@@ -64,13 +69,13 @@ body.dark .square-box {
   top: 12px;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #000;
+  color: #fff;
 }
 .square-box .internal-marks-footer {
   position: absolute;
   bottom: 12px;
   font-size: 1rem;
-  color: #000;
+  color: #fff;
   font-weight: bold;
 }
 .square-box .internal-marks-content {

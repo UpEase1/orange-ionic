@@ -1,5 +1,5 @@
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  --background: var(--ion-background-color);
 }
 
 ion-menu.md ion-content {
@@ -27,7 +27,9 @@ ion-menu.md ion-list#inbox-list ion-list-header {
   font-weight: 600;
   min-height: 20px;
 }
-
+#inbox-list{
+  background-color: var(--ion-background-color);
+}
 ion-menu.md ion-list#labels-list ion-list-header {
   font-size: 16px;
   margin-bottom: 18px;
@@ -122,6 +124,10 @@ ion-item.selected {
 
 ion-list-header {
   padding-left: 0px;
+  --background: var(--ion-background-color);
+}
+ion-item{
+  --background: var(--ion-background-color);
 }
 
 .ms-login {
